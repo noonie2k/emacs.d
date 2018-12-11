@@ -239,5 +239,9 @@
   :config
   (atomic-chrome-start-server))
 
+(use-package server
+  :config
+  (server-start))
+
 (provide 'init)
 ;;; init.el ends here
