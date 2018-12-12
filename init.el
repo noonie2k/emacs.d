@@ -29,9 +29,9 @@
 (use-package files
   :config
   (setq-default backup-by-copying t
-		backup-directory-alist `(("." . ,temporary-file-directory))
-		delete-old-versions t
-		version-control t))
+		        backup-directory-alist `(("." . ,temporary-file-directory))
+		        delete-old-versions t
+		        version-control t))
 
 ;;
 ;; Buffers
@@ -98,9 +98,9 @@
   (progn
     (global-company-mode t)
     (setq-default company-idle-delay 0.2
-		  company-minimum-prefix-length 2
-		  company-require-match nil
-		  company-tooltip-align-annotations t)))
+		          company-minimum-prefix-length 2
+		          company-require-match nil
+		          company-tooltip-align-annotations t)))
 
 (use-package counsel
   :diminish
@@ -138,13 +138,14 @@
   (ivy-mode t)
   :init
   (setq-default ivy-use-virtual-buffers t
-		enable-recursive-minibuffers t))
+		        enable-recursive-minibuffers t))
 
 ;;
 ;; Parens
 ;;
 (use-package paredit
-  :hook (emacs-lisp-mode . paredit-mode))
+  :hook ((emacs-lisp-mode . paredit-mode)
+         (clojure-mode . paredit-mode)))
 
 ;;
 ;; Project Management
@@ -166,14 +167,14 @@
 ;;
 (use-package swiper
   :bind (("C-s" . swiper)
-	 ("C-s-s" . isearch-forward)))
+	     ("C-s-s" . isearch-forward)))
 
 ;;
 ;; Selections
 ;;
 (use-package expand-region
   :bind (("C-=" . er/expand-region)
-	 ("C--" . er/contract-region)))
+	     ("C--" . er/contract-region)))
 
 ;;
 ;; Snippets
@@ -202,6 +203,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;
+;; Clojure
+;;
+(use-package clojure-mode)
+(use-package cider)
+
+;;
+;; Coffeescript
+;;
+(use-package coffee-mode)
+
+;;
 ;; Nix
 ;;
 (use-package nix-mode
@@ -215,6 +227,7 @@
   :hook (ruby-mode . robe-mode)
   :config (add-to-list 'company-backends 'company-robe))
 
+(use-package poly-erb)
 ;;
 ;; Terraform
 ;;
@@ -227,6 +240,12 @@
 ;;;;;;;;;;;;;;
 ;; Features ;;
 ;;;;;;;;;;;;;;
+
+;;
+;; ReST Client
+;;
+(use-package restclient
+  :mode ("\\.http\\'" . restclient-mode))
 
 ;;
 ;; Which Key
