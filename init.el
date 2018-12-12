@@ -132,9 +132,6 @@
 ;;
 ;; Navigation
 ;;
-(use-package counsel-projectile
-  :commands counsel-projectile-mode)
-
 (use-package ivy
   :diminish
   :config
@@ -154,8 +151,15 @@
 ;;
 (use-package projectile
   :diminish
-  :config
-  (counsel-projectile-mode t))
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map)))
+
+(use-package counsel-projectile
+  :commands counsel-projectile-mode
+  :init
+  (setq counsel-projectile-mode t))
+
+(counsel-projectile-mode)
 
 ;;
 ;; Searching
